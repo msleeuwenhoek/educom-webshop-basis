@@ -30,6 +30,10 @@
   width: 400px;
 }
 
+.wrapper form.contact-form .error {
+  color: red;
+}
+
 .wrapper footer {
   background-color: black;
   color: white;
