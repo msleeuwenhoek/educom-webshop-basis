@@ -4,15 +4,53 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
+    <title>Contact</title>
   </head>
   <body>
-    <h1>This is the about page</h1>
+    <h1>This is the about Contact</h1>
     <ul>
       <li>HOME</li>
       <li>ABOUT</li>
       <li>CONTACT</li>
     </ul>
+    <h2>Contact us:</h2>
+    <form>
+      <label for="name">Name:</label>
+      <select id="title" name="title">
+        <option value="" selected>Title</option>
+        <option value="mr">Mr</option>
+        <option value="mrs">Mrs</option>
+      </select>
+      <input type="text" id="name" name="name" />
+      <br />
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" />
+      <br />
+      <label for="phonenumber">Phone number:</label>
+      <input type="text" id="phonenumber" name="phonenumber" />
+      <br />
+      <span>Preferred communication channel:</span>
+      <input
+        type="radio"
+        id="email-channel"
+        name="communication-channel"
+        value="email"
+      />
+      <label for="email-channel">Email</label>
+      <input
+        type="radio"
+        id="phone-channel"
+        name="communication-channel"
+        value="phone"
+      />
+      <label for="phone-channel">Phone</label>
+      <br />
+      <label for="message">Message:</label>
+      <textarea name="message" id="message"></textarea>
+      <br />
+      <button type="button">Send</button>
+    </form>
+
     <footer>
       <div>&copy; 2022 M. Sleeuwenhoek</div>
     </footer>
