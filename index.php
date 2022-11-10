@@ -1,10 +1,13 @@
 <?php
     function getRequestedPage(){
-       return ($_GET['page']);
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            return $_POST['page'];
+        } else{
+       return ($_GET['page']);}
     }
     
-    function showResponsePage($Page){
-        include "$Page.php";
+    function showResponsePage($page){
+        include "$page.php";
 
         echo 
         "<!DOCTYPE html>
@@ -24,7 +27,7 @@
         include 'menu.html';
         
         echo $content;
-        if($Page === "contact"){include 'contact-form.php';}
+        if($page === "contact"){include 'contact-form.php';}
 
         include 'footer.html';
         echo "</div>";
@@ -35,7 +38,8 @@
     }
 
     $page = getRequestedPage();
-        showResponsePage($page);
+    
+    showResponsePage($page);
 
 ?>
 

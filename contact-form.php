@@ -1,6 +1,8 @@
 
 <?php 
     
+
+
     // form variables
     $titleErr = $nameErr = $emailErr = $phonenumberErr = $communication_channelErr ="";
     $title=  $name = $email = $phonenumber = $communication_channel =$message = "";
@@ -69,7 +71,7 @@
 <?php if(!$valid): ?>
     <div class="content">
         <h2>Contact us:</h2>
-        <form class="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
+        <form class="contact-form"  method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
             <label for="name">Name:</label>
             <select id="title" name="title">
                 <option value="" selected>Title</option>
@@ -120,7 +122,8 @@
             <label for="message">Message:</label>
             <textarea class="form-field" name="message" id="message" ><?php echo $message;?></textarea>
             <br />
-            <input type="submit" name="submit" value="Submit">
+            <input type="hidden" name="page" value="contact"> 
+            <input type="submit" name="submit" value="Submit" id="submit">
         </form>
     </div>
 <?php else: ?>
@@ -128,3 +131,5 @@
         <p>Thank you for your message, <?php echo $name?> !</p>
     </div>
 <?php endif ?>
+
+
