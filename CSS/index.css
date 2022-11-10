@@ -26,11 +26,11 @@
   font-size: 12px;
   color: rgb(53, 53, 53);
 }
-.wrapper form.contact-form .form-field {
+.wrapper form .form-field {
   width: 400px;
 }
 
-.wrapper form.contact-form .error {
+.error {
   color: red;
 }
 

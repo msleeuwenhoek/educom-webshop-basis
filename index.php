@@ -3,8 +3,8 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
             return $_POST['page'];
         } else{
-       return ($_GET['page']);}
-    }
+       return (isset($_GET["page"]) ? $_GET["page"] : 'home');
+    }}
     
     function showResponsePage($page){
         include "$page.php";
@@ -17,7 +17,7 @@
             <meta http-equiv='X-UA-Compatible' content='IE=edge'>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
             <title>$tab_title</title>
-            <link rel='stylesheet' href='./CSS/stylesheet.css' />
+            <link rel='stylesheet' href='./CSS/index.css' />
 
         </head>
         <body>";
@@ -28,6 +28,7 @@
         
         echo $content;
         if($page === "contact"){include 'contact-form.php';}
+        if($page === "register"){include 'register-form.php';}
 
         include 'footer.html';
         echo "</div>";
