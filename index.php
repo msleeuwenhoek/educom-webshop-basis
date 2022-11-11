@@ -1,5 +1,9 @@
 <?php
+session_start();
+
+
 include 'validations.php';
+include 'session_manager.php';
 
 function getRequestedPage()
 {
@@ -32,6 +36,7 @@ function processRequest($page)
         case 'login':
             $data = validateLogin();
             if ($data['valid'] === true) {
+                logUserIn($data);
                 $page = 'home';
             }
             break;
@@ -40,6 +45,10 @@ function processRequest($page)
             $page = 'about';
             break;
         case 'home':
+            $page = 'home';
+            break;
+        case 'logout':
+            logUserOut();
             $page = 'home';
             break;
     }
@@ -66,9 +75,11 @@ function showResponsePage($data)
         </head>
         <body>";
 
+
+
     echo "<div class='wrapper'>";
     echo $header;
-    include 'menu.html';
+    showMenu($data);
 
     showContent($data);
 
@@ -84,3 +95,41 @@ function showResponsePage($data)
 $page = getRequestedPage();
 $data = processRequest($page);
 showResponsePage($data);
+
+
+function showMenu($data)
+{
+    $pages = ['home', 'about', 'contact', 'register', 'login', 'logout'];
+    echo '<ul class="menu">';
+
+    foreach ($pages as $page) {
+        if ($page === 'logout') {
+            if (isset($_SESSION['username'])) {
+                echo '<li>
+    <a
+      href="http://localhost/educom-webshop-basis-1667987701/index.php?page=' . $page . '"
+      >' . strtoupper($page) . " " . strtoupper($_SESSION['username'])  . '</a
+    >
+  </li>';
+            }
+        } elseif ($page === 'login' || $page === 'register') {
+            if (!isset($_SESSION['username'])) {
+                echo '<li>
+    <a
+      href="http://localhost/educom-webshop-basis-1667987701/index.php?page=' . $page . '"
+      >' . strtoupper($page) .  '</a
+    >
+  </li>';
+            }
+        } else {
+
+            echo '<li>
+    <a
+      href="http://localhost/educom-webshop-basis-1667987701/index.php?page=' . $page . '"
+      >' . strtoupper($page) . '</a
+    >
+  </li>';
+        }
+    };
+    echo "</ul>";
+}

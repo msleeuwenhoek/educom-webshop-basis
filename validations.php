@@ -76,7 +76,7 @@ function validateRegistration()
 function validateLogin()
 { // form variables
     $emailErr = $passwordErr = "";
-    $email = $password = "";
+    $name = $email = $password = "";
     $valid = false;
 
     // validating form data
@@ -127,11 +127,24 @@ function validateLogin()
         }
     }
 
+    //set username
+    $users_file = fopen("./users/users.txt", "r");
+    while (!feof($users_file)) {
+        $user = fgets($users_file);
+        $user_data = explode("|", $user);
+
+        if (stripos($user, $email) !== false) {
+            $name = $user_data[1];
+            break;
+        }
+    }
+    fclose($users_file);
+
     // checking if all data matched database and was valid
     if ($email !== "" && $password !== ""  && $emailErr === "" && $passwordErr === "") {
         $valid = true;
     }
-    return array("email" => $email, "password" => $password, "emailErr" => $emailErr, "passwordErr" => $passwordErr,  "valid" => $valid);
+    return array("name" => $name, "email" => $email, "password" => $password, "emailErr" => $emailErr, "passwordErr" => $passwordErr,  "valid" => $valid);
 }
 
 
