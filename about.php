@@ -2,11 +2,11 @@
 <?php
 $tab_title = "About";
 $header = "<h1>This is the about page</h1>";
-$content =
 
-    "<div class='content'>
 
-<p>
+function showContent()
+{
+    echo '<div class="content"><p>
 My name is Meryl. I am trying to become a web developer. I have a
 degree in Psychology. I am 21 years old.
 </p>
@@ -23,8 +23,8 @@ exercitationem necessitatibus.
 <li>Puzzling</li>
 <li>Gaming</li>
 </ul>
-</div>";
-
+</div>';
+}
 ?>
       
      

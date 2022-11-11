@@ -1,5 +1,5 @@
 <?php
-
+include 'validations.php';
 
 function getRequestedPage()
 {
@@ -10,9 +10,48 @@ function getRequestedPage()
     }
 }
 
-function showResponsePage($page)
+
+
+function processRequest($page)
 {
-    include "$page.php";
+    switch ($page) {
+        case 'contact':
+            $data = validateContact();
+            if ($data['valid'] === true) {
+                $page = 'contact';
+            }
+
+            break;
+        case 'register':
+            $data = validateRegistration();
+            if ($data['valid'] === true) {
+                $page = 'login';
+            }
+
+            break;
+        case 'login':
+            $data = validateLogin();
+            if ($data['valid'] === true) {
+                $page = 'home';
+            }
+            break;
+
+        case 'about':
+            $page = 'about';
+            break;
+        case 'home':
+            $page = 'home';
+            break;
+    }
+
+    $data['page'] = $page;
+    return $data;
+}
+function showResponsePage($data)
+{
+    $current_page = $data['page'];
+    include "$current_page.php";
+
 
     echo
     "<!DOCTYPE html>
@@ -31,17 +70,8 @@ function showResponsePage($page)
     echo $header;
     include 'menu.html';
 
-    echo $content;
-    if ($page === "contact") {
-        include 'contact-form.php';
-    }
-    if ($page === "register") {
-        include 'register-form.php';
-    }
+    showContent($data);
 
-    if ($page === "login") {
-        include 'login-form.php';
-    }
 
     include 'footer.html';
     echo "</div>";
@@ -52,5 +82,5 @@ function showResponsePage($page)
 }
 
 $page = getRequestedPage();
-
-showResponsePage($page);
+$data = processRequest($page);
+showResponsePage($data);
