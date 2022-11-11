@@ -44,9 +44,7 @@ function validateRegistration()
 
     // checking if all data is valid
     if ($name !== "" && $email !== "" && $password !== "" && $confirm_password !== "" && $nameErr === "" && $emailErr === "" && $passwordErr === "" && $confirm_passwordErr === "") {
-
         $users_file = fopen("./users/users.txt", "r");
-
         while (!feof($users_file)) {
             $user = fgets($users_file);
             if (stripos(
@@ -57,6 +55,7 @@ function validateRegistration()
             }
         }
         fclose($users_file);
+
         if ($emailErr === "") {
             $valid = true;
 
@@ -70,6 +69,7 @@ function validateRegistration()
         }
     }
 
+    // returning the data
     return array("name" => $name, "email" => $email, "password" => $password, "confirm_password" => $confirm_password, "nameErr" => $nameErr, "emailErr" => $emailErr, "passwordErr" => $passwordErr, "confirm_passwordErr" => $confirm_passwordErr, "valid" => $valid);
 }
 
@@ -90,18 +90,13 @@ function validateLogin()
 
             while (!feof($users_file)) {
                 $user = fgets($users_file);
-
                 if (stripos($user, $email) !== false) {
                     $emailErr = "";
-
                     break;
                 } else {
                     $emailErr = "Email not found";
                 }
             }
-
-
-
             fclose($users_file);
         }
 
@@ -110,7 +105,6 @@ function validateLogin()
         } else {
             $password = test_input($_POST["password"]);
             $users_file = fopen("./users/users.txt", "r");
-
             while (!feof($users_file)) {
                 $user = fgets($users_file);
                 $user_data = explode("|", $user);
@@ -122,12 +116,11 @@ function validateLogin()
                     $passwordErr = "Password is incorrect";
                 }
             }
-
             fclose($users_file);
         }
     }
 
-    //set username
+    //set username of logged in user
     $users_file = fopen("./users/users.txt", "r");
     while (!feof($users_file)) {
         $user = fgets($users_file);
@@ -144,10 +137,10 @@ function validateLogin()
     if ($email !== "" && $password !== ""  && $emailErr === "" && $passwordErr === "") {
         $valid = true;
     }
+
+    // returning the data
     return array("name" => $name, "email" => $email, "password" => $password, "emailErr" => $emailErr, "passwordErr" => $passwordErr,  "valid" => $valid);
 }
-
-
 
 function validateContact()
 {
@@ -202,11 +195,12 @@ function validateContact()
     if ($title !== "" && $name !== "" && $email !== "" && $phonenumber !== "" && $communication_channel !== "" && $titleErr === "" &&  $nameErr === "" && $emailErr === "" && $phonenumberErr === "" && $communication_channelErr === "") {
         $valid = true;
     }
+
+    // returning the data
     return array("title" => $title, "name" => $name, "email" => $email, "phonenumber" => $phonenumber, "communication_channel" => $communication_channel, "message" => $message, "titleErr" => $titleErr, "nameErr" => $nameErr, "emailErr" => $emailErr, "phonenumberErr" => $phonenumberErr, "communication_channelErr" => $communication_channelErr, "valid" => $valid);
 }
 
-
-
+// Modifying and de-hacking the form data
 function test_input($data)
 {
     $data = trim($data);

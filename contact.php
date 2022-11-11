@@ -1,9 +1,5 @@
 <?php
-$tab_title = "Contact";
 $header = "<h1>This is the contact page</h1>";
-$content = "";
-
-
 
 function showContactForm($data)
 {
@@ -54,17 +50,17 @@ function showContactForm($data)
       <input type="hidden" name="page" value="contact">
       <input type="submit" name="submit" value="Submit" id="submit">
     </form>
-  </div>
-';
+  </div>';
 }
 
 function showThankyouPage($data)
 {
     echo '<div class="content">
     <p>Thank you for your message, ' . $data['name'] . '!</p>
-  </div>';
+    </div>';
 }
 
+// Show content depending on if form was filled in correctly or not
 function showContent($data)
 {
     if ($data['valid'] === true) {
