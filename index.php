@@ -39,6 +39,10 @@ function showResponsePage($page)
         include 'register-form.php';
     }
 
+    if ($page === "login") {
+        include 'login-form.php';
+    }
+
     include 'footer.html';
     echo "</div>";
 
