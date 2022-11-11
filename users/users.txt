@@ -1,0 +1,8 @@
+[email]|[naam]|[wachtwoord]
+coach@man-kind.nl|Geert Weggemans|halt!
+bob@bob.nl|bob|password
+bob2@bob.nl|bob2|password
+bob3@bob.nl|bob3|password
+bob4@bob.nl|bob4|password
+bob5@bob.nl|bob5|password
+bob6@bob.nl|bob6|password

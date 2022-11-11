@@ -1,10 +1,10 @@
 
-<?php 
+<?php
 $tab_title = "About";
-$header = "<h1>This is the about page</h1>"; 
-$content = 
+$header = "<h1>This is the about page</h1>";
+$content =
 
-"<div class='content'>
+    "<div class='content'>
 
 <p>
 My name is Meryl. I am trying to become a web developer. I have a

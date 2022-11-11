@@ -1,16 +1,21 @@
 <?php
-    function getRequestedPage(){
-        if ($_SERVER["REQUEST_METHOD"] == "POST"){
-            return $_POST['page'];
-        } else{
-       return (isset($_GET["page"]) ? $_GET["page"] : 'home');
-    }}
-    
-    function showResponsePage($page){
-        include "$page.php";
 
-        echo 
-        "<!DOCTYPE html>
+
+function getRequestedPage()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        return $_POST['page'];
+    } else {
+        return (isset($_GET["page"]) ? $_GET["page"] : 'home');
+    }
+}
+
+function showResponsePage($page)
+{
+    include "$page.php";
+
+    echo
+    "<!DOCTYPE html>
         <html lang='en'>
         <head>
             <meta charset='UTF-8'>
@@ -22,29 +27,26 @@
         </head>
         <body>";
 
-        echo "<div class='wrapper'>";
-        echo $header;
-        include 'menu.html';
-        
-        echo $content;
-        if($page === "contact"){include 'contact-form.php';}
-        if($page === "register"){include 'register-form.php';}
+    echo "<div class='wrapper'>";
+    echo $header;
+    include 'menu.html';
 
-        include 'footer.html';
-        echo "</div>";
-
-        echo 
-        "</body>
-        </html>";
+    echo $content;
+    if ($page === "contact") {
+        include 'contact-form.php';
+    }
+    if ($page === "register") {
+        include 'register-form.php';
     }
 
-    $page = getRequestedPage();
-    
-    showResponsePage($page);
+    include 'footer.html';
+    echo "</div>";
 
-?>
+    echo
+    "</body>
+        </html>";
+}
 
+$page = getRequestedPage();
 
-
-
-
+showResponsePage($page);
